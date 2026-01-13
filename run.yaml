@@ -1,0 +1,36 @@
+version: 2
+image_name: reproducer
+apis:
+- inference
+- vector_io
+providers:
+  inference:
+  - provider_id: sentence-transformers
+    provider_type: inline::sentence-transformers
+  vector_io:
+  - provider_id: faiss
+    provider_type: inline::faiss
+    config:
+      persistence:
+        namespace: vector_io::faiss
+        backend: kv_default
+storage:
+  backends:
+    kv_default:
+      type: kv_sqlite
+      db_path: ./kvstore.db
+    sql_default:
+      type: sql_sqlite
+      db_path: ./sql_store.db
+  stores:
+    metadata:
+      namespace: registry
+      backend: kv_default
+    inference:
+      table_name: inference_store
+      backend: sql_default
+registered_resources:
+  models: []
+  vector_dbs: []
+server:
+  port: 8321
