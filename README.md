@@ -41,4 +41,5 @@ uv run --with 'aiosqlite==0.21.0' reproducer.py
 
 ## Related
 
+- Upstream issue: https://github.com/llamastack/llama-stack/issues/4587
 - aiosqlite changelog: https://aiosqlite.omnilib.dev/en/stable/changelog.html (v0.22.0 changes)
